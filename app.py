@@ -4,6 +4,8 @@ from flask_pymongo import PyMongo
 import datetime
 import sys
 
+# https://stackoverflow.com/questions/46752051/flask-pymongo-string-back-to-objectid
+# https://pymongo.readthedocs.io/en/stable/tutorial.html
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
