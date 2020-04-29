@@ -8,7 +8,10 @@
     {% if messages %}
 
         {% for message in messages %}
-        <article>{{message.text}}</article>
+        <article>
+            {{message.text}} 
+            <button class="btn" id="{{message._id}}">suppr</button>
+        </article>
         {% endfor %}
 
     {% else %}
