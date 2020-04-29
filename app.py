@@ -1,7 +1,14 @@
 from flask import Flask, url_for, request, render_template
 from markupsafe import escape
+from flask_pymongo import PyMongo
+
+
 
 app = Flask(__name__)
+
+# https://flask-pymongo.readthedocs.io/en/latest/
+app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
+mongo = PyMongo(app)
 
 
 @app.route('/')
@@ -13,10 +20,21 @@ def messages():
     if request.method == 'POST':
         return 'saved'
     else:
-        return 'messages here'
+        return render_template('messages.html', name="you")
 
 
-
+@app.route("/api/messages")
+def api_messages():
+    # user = get_current_user()
+    online_users = mongo.db.users.find({"online": True})
+    user = {
+        "username": "Ford",
+        "theme": "Mustang"
+    }
+    return {
+        "username": user["username"],
+        "theme": user["theme"],
+    }
 
 
 
