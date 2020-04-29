@@ -10,7 +10,10 @@
         {% for message in messages %}
         <article>
             {{message.text}} 
-            <button class="btn" id="{{message._id}}">suppr</button>
+            <form action="/api/messages/delete" method="post">
+                <input type="hidden" name="id" value="{{message._id}}">
+                <button class="btn btn-sm btn-danger float-right" type="submit">suppr</button>
+            </form>
         </article>
         {% endfor %}
 

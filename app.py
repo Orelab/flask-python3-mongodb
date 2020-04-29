@@ -4,6 +4,9 @@ from flask_pymongo import PyMongo
 import datetime
 import sys
 
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+
 
 app = Flask(__name__)
 
@@ -40,6 +43,15 @@ def api_messages_save():
     }
 
     mongo.db.messages.insert_one(message)
+    return redirect(url_for("messages"))
+
+
+
+@app.route("/api/messages/delete", methods=["POST"])
+def api_messages_delete():
+    _id = request.form["id"]
+
+    mongo.db.messages.delete_one({'_id': ObjectId(_id)})
     return redirect(url_for("messages"))
 
 
