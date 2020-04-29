@@ -1,51 +1,18 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-</head>
-
-<body>
-    {% if name %}
-    <h1>Hello {{ name }} !</h1>
-    {% else %}
-    <h1>Hello, World !</h1>
-    {% endif %}
-
-    <h2 class="h3 mb-3 font-weight-normal">Flask / Python / Mongodb demo</h2>
+{% extends 'base.html' %}
 
 
-    <form class="form-signin">
+{% block content %}
+
+    <h2 class="text-center">An introduction to Flask & MongoDBD</h2>
+
+
+    <form class="form-signin" action="/api/messages/save" method="post">
         <label for="message" class="sr-only">message</label>
-        <input type="test" id="message" class="form-control" placeholder="Write your message here" required autofocus>
+        <input type="test" id="message" name="message" class="form-control" placeholder="Write your message here" required autofocus>
 
         <button class="btn btn-primary" type="submit">Save</button>
 
-        <p class="mt-5 mb-3 text-muted">&copy; Simplon</p>
+        <p class="mt-5 mb-3 text-muted"><a href="/messages">see all messages</a></p>
     </form>
 
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+{% endblock %}

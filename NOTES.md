@@ -29,3 +29,21 @@ Ce fichier permet de freezer es dépendances, un peu à la manière de package.j
 pip freeze > requirements.txt
 ```
 Ensuite, se contenter de faire un `pip install` pour recréer un environnement ;)
+
+## Mongodb
+```
+sudo apt install mongodb
+sudo service mongodb start 
+mongo
+```
+
+### un client logiciel pour bricoler Mongodb :
+- https://robomongo.org/download
+
+
+
+
+
+- https://flask.palletsprojects.com/
+- https://flask-pymongo.readthedocs.io/
+- https://pymongo.readthedocs.io/

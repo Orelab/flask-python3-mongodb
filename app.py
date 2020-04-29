@@ -1,13 +1,14 @@
-from flask import Flask, url_for, request, render_template
+from flask import Flask, url_for, request, render_template, redirect
 from markupsafe import escape
 from flask_pymongo import PyMongo
-
+import datetime
+import sys
 
 
 app = Flask(__name__)
 
 # https://flask-pymongo.readthedocs.io/en/latest/
-app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/pyflask"
 mongo = PyMongo(app)
 
 
@@ -15,26 +16,33 @@ mongo = PyMongo(app)
 def index():
     return render_template('index.html', name="you")
 
+
 @app.route('/messages', methods=['POST', 'GET'])
 def messages():
-    if request.method == 'POST':
-        return 'saved'
-    else:
-        return render_template('messages.html', name="you")
+    messages = mongo.db.messages.find({})
+    print(messages, flush=True)
+    return render_template('messages.html', name="you", messages=messages)
 
 
 @app.route("/api/messages")
 def api_messages():
-    # user = get_current_user()
-    online_users = mongo.db.users.find({"online": True})
-    user = {
-        "username": "Ford",
-        "theme": "Mustang"
+    messages = mongo.db.messages.find({})
+    print(messages, flush=True)
+    return messages
+
+
+@app.route("/api/messages/save", methods=["POST"])
+def api_messages_save():
+
+    message = {
+        "date": datetime.datetime.now(),
+        "text": request.form["message"]
     }
-    return {
-        "username": user["username"],
-        "theme": user["theme"],
-    }
+
+    mongo.db.messages.insert_one(message)
+    return redirect(url_for("messages"))
+
+
 
 
 
