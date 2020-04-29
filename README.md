@@ -1,3 +1,6 @@
+# Un projet pour expérimenter Flask/MongoDB
+
+
 ## entrer dans le venv (attention à 'point' + 'espace' en début de commande !):
 ```
 . venv/bin/activate
