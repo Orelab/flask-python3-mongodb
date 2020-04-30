@@ -29,6 +29,7 @@ def messages():
     return render_template('messages.html', name="you", messages=messages)
 
 
+# API style :D
 @app.route("/api/messages")
 def api_messages():
     messages = mongo.db.messages.find({})
@@ -41,12 +42,12 @@ def api_messages_save():
 
     message = {
         "date": datetime.datetime.now(),
-        "text": request.form["message"]
+        "text": request.form["message"],
+        "done": False
     }
 
     mongo.db.messages.insert_one(message)
     return redirect(url_for("messages"))
-
 
 
 @app.route("/api/messages/delete", methods=["POST"])
@@ -54,6 +55,19 @@ def api_messages_delete():
     _id = request.form["id"]
 
     mongo.db.messages.delete_one({'_id': ObjectId(_id)})
+    return redirect(url_for("messages"))
+
+
+@app.route("/api/messages/done", methods=["POST"])
+def api_messages_done():
+    _id = request.form["id"]
+
+    if "done" in request.form:
+        done = request.form["done"]
+    else:
+        done = False
+
+    mongo.db.messages.update_one({'_id': ObjectId(_id)}, {"$set":{"done":done=="on"}} )
     return redirect(url_for("messages"))
 
 

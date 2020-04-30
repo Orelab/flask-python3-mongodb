@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h2 class="text-center">My messages here</h2>
+<h2 class="text-center">My tasks</h2>
 
     {% if messages %}
 
@@ -16,11 +16,18 @@
                 <button class="btn btn-sm btn-danger float-right" type="submit">suppr</button>
             </form>
             
-            <form action="/api/messages/done" method="post">
-                <input type="hidden" name="id" value="{{message._id}}">
-                <input type="checkbox" class="custom-control-input" name="done" value="">
-                <button class="btn btn-sm btn-warning float-right" type="submit">done</button>
+            <form action="/api/messages/done" method="post" onclick="this.submit()">
+                <div class="custom-control custom-switch float-right">
+                    <input type="hidden" name="id" value="{{message._id}}">
+                    <input type="checkbox" name="done"
+                        {% if message.done %} checked="" {% endif %} 
+                        class="custom-control-input" 
+                        id="switch{{message._id}}">
+                    <label class="custom-control-label" for="switch{{message._id}}">Done</label>
+                &nbsp;
+                </div>
             </form>
+
         </article>
         {% endfor %}
 
