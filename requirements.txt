@@ -15,7 +15,7 @@ command-not-found==0.3
 ConfigArgParse==0.11.0
 configobj==5.0.6
 connexion==2.4.0
-cryptography==2.1.4
+cryptography==2.3
 cupshelpers==1.0
 cycler==0.10.0
 defer==1.0.6
