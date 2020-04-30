@@ -25,16 +25,17 @@ def index():
 @app.route('/messages', methods=['POST', 'GET'])
 def messages():
     messages = mongo.db.messages.find({})
-    print(messages, flush=True)
-    return render_template('messages.html', name="you", messages=messages)
+    # https://stackoverflow.com/questions/394809/does-python-have-a-ternary-conditional-operator
+    return render_template('messages.html', name="you", messages=messages if messages.count() else False)
 
 
-# API style :D
 @app.route("/api/messages")
 def api_messages():
-    messages = mongo.db.messages.find({})
-    print(messages, flush=True)
-    return messages
+    """
+    API style :)
+    (not used here, but very cool)
+    """
+    return mongo.db.messages.find({})
 
 
 @app.route("/api/messages/save", methods=["POST"])

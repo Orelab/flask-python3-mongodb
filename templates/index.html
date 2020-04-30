@@ -3,16 +3,30 @@
 
 {% block content %}
 
-    <h2 class="text-center">An introduction to Flask & MongoDBD</h2>
+<h2 class="text-center">An introduction to Flask & MongoDBD</h2>
 
 
-    <form class="form-signin" action="/api/messages/save" method="post">
-        <label for="message" class="sr-only">message</label>
-        <input type="test" id="message" name="message" class="form-control" placeholder="Write your message here" required autofocus>
+<div class="container">
 
-        <button class="btn btn-primary" type="submit">Save</button>
+    <form class="form-inline row" action="/api/messages/save" method="post">
 
-        <p class="mt-5 mb-3 text-muted"><a href="/messages">see all messages</a></p>
+        <div class="col-11">
+            <input type="text" id="message" name="message" class="form-control" placeholder="Write your message here"
+                required autofocus>
+        </div>
+        <div class="col-1">
+            <button type="submit" class="btn btn-primary mb-2">Save</button>
+        </div>
+
     </form>
+
+</div>
+
+
+<style>
+    #message {
+        width: 100%;
+    }
+</style>
 
 {% endblock %}
