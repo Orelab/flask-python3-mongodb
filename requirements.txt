@@ -92,7 +92,7 @@ reportlab==3.4.0
 requests==2.11.1
 requests-toolbelt==0.7.0
 requests-unixsocket==0.1.5
-rsa==4.0
+rsa==4.1
 scour==0.36
 SecretStorage==2.3.1
 setproctitle==1.1.10
