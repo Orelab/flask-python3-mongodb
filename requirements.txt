@@ -87,7 +87,7 @@ python-xapp==1.0.0
 python-xlib==0.20
 pytz==2018.3
 pyxdg==0.25
-PyYAML==5.2
+PyYAML==5.4
 reportlab==3.4.0
 requests==2.11.1
 requests-toolbelt==0.7.0
